@@ -1,0 +1,95 @@
+.about-page {
+
+    &__background {
+        height: 100vh;
+        width: 100vw;
+        background-color: #B49082;
+        overflow: hidden;
+    }
+
+    &__title {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: #07090F;
+        font-size: 2.5em;
+        position: relative;
+        margin-bottom: 1rem;
+        text-align: right;
+        margin-right: 1rem;
+        animation: Fade_In ease-in;
+    }
+
+    &__first-paragraph {
+        font-family: 'Lato', sans-serif;
+        color: #07090F;
+        font-size: 1.2em;
+        margin-bottom: 1rem;
+        text-align: right;
+        margin-right: 1rem;
+        animation: Fade_In 2s ease-in;
+    }
+
+    &__second-paragraph {
+        font-family: 'Lato', sans-serif;
+        color: #07090F;
+        font-size: 1.2em;
+        margin-bottom: 1rem;
+        text-align: right;
+        margin-right: 1rem;
+        animation: Fade_In 4s ease-in;
+    }
+
+    &__introduction {
+
+        &--title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #07090F;
+            font-size: 1.5em;
+            position: relative;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            margin-left: 1rem;
+            text-align: right;
+            margin-right: 1rem;
+            animation: Fade_In 8s ease-in;
+        }
+
+        &__container {
+            display: flex;
+            flex-direction: row;
+            margin-left: 1rem;
+        }
+
+        &__photo-icon {
+            width: 10em;
+            height: 10em;
+            border-radius: 10em;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            animation: Fade_In 8s ease-in;
+            -webkit-filter: grayscale(100%); 
+            filter: grayscale(100%);
+        }
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+            margin-left: 1rem;
+            justify-content: center;
+            animation: Fade_In 8s ease-in;
+        }
+
+        &__name {
+            font-family: 'Lato', sans-serif;
+            font-size: 1em;  
+        }
+
+        &__github-link {
+            font-family: 'Lato', sans-serif;
+            font-size: 1em;
+            text-decoration: none;
+        }
+
+    }
+}

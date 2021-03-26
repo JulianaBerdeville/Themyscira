@@ -1,0 +1,27 @@
+.spheric-navbar {
+    width: 5em;
+    height: 5em;
+    border-radius: 100%;
+    background-color: #D6C3C9;
+    margin-left: 0.5rem;
+    margin-top: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__navbar-title {
+        color: #A37C40;
+        animation: Fade_In_with_color 1s ease-in;
+    }
+}
+
+@keyframes Fade_In_with_color {
+
+    0% { 
+        opacity: 0; 
+    }
+
+    100% { 
+        opacity: 1; 
+    }
+}
