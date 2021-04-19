@@ -1,15 +1,15 @@
 import React from 'react';
 
-import JulianaBerdeville from '../../assets/images/JulianaBerdeville.jpeg'
-import LucasViveiros from '../../assets/images/LucasViveiros.jpeg'
+import JulianaBerdeville from '../../assets/images/JulianaBerdeville.jpeg';
+import LucasViveiros from '../../assets/images/LucasViveiros.jpeg';
 
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar from '../../components/Navbar/Navbar';
 
-function AboutUs () {
+function AboutUs() {
     return (
         <>
             <div className="about-page__background">
-                <Navbar/>
+                <Navbar />
                 <h1 className="about-page__title">Sobre Themyscira:</h1>
                 <p className="about-page__first-paragraph">
                     Esse espaço foi elaborado por uma dupla de graduandos em Ciência da Computação
