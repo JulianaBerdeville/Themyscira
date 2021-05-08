@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend to the Themyscira project.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Themyscira"
+  },
+  "keywords": [
+    "Themyscira"
+  ],
+  "author": "Juliana Berdeville",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^8.5.0"
+  }
+}
