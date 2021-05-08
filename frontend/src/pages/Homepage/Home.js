@@ -28,11 +28,11 @@ function Home() {
     const CallInOtherButtons = () => {
         if (buttonRendered) {
             return (
-                <>
+                <div className="homepage__menu-buttons">
                     <Button text="rodas de conversa" functionName={goToForumPage} />
                     <Button text="sobre nós" functionName={goToAboutUsPage} />
                     <Button text="fale com a gente" functionName={goToContactUsPage} />
-                </>
+                </div>
             );
         }
         return (<></>)
@@ -67,6 +67,14 @@ function Home() {
                     : <></>
                 }
                 <CallInOtherButtons />
+
+                <div className="homepage__footer">
+                    <div className="homepage__footer__container">
+                        <span className="homepage__footer__container__items"> CENTRO UNIVERSITÁRIO CARIOCA (UNICARIOCA)  - </span>
+                        <span className="homepage__footer__container__items">  ENTENDA SOBRE O ASSUNTO  - </span>
+                        <span className="homepage__footer__container__items"> BUSQUE AJUDA  </span>
+                    </div>
+                </div>
             </div>
         </>
     );

@@ -1,0 +1,124 @@
+// variables:
+$background: #b49082;
+$secondary-background: #a37c40;
+$primary-text-color: #07090f;
+$secondary-text-color: #e5e5e5;
+
+$mobile-screen: 800px;
+$gutter: 8px;
+
+//mixins:
+
+//  big landscape tablets, laptops, and desktops views
+@mixin desktop-view {
+  @media (min-width: 1024px) {
+    .homepage {
+      &__footer {
+        bottom: 0;
+        position: absolute;
+        height: calc(#{$mobile-screen}/ 8);
+        background-color: $secondary-background;
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        &__container {
+          margin-left: 20%;
+
+          &__items {
+            font-family: "Lato", sans-serif;
+            color: $secondary-text-color;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+}
+
+// hi-res laptops and desktops
+@mixin hi-res-desktop-view {
+  @media (min-width: 1281px) {
+    .homepage {
+      &__footer {
+        bottom: 0;
+        position: absolute;
+        height: calc(#{$mobile-screen}/ 8);
+        background-color: $secondary-background;
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        &__container {
+          margin-left: 20%;
+
+          &__items {
+            font-family: "Lato", sans-serif;
+            color: $secondary-text-color;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin small-phones {
+  @media only screen and (max-width: 360px) and (min-width: 320px) {
+    .homepage {
+      left: 0px;
+      background-color: $background;
+      overflow: hidden;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      position: absolute;
+
+      &__title {
+        margin-top: -0.5em;
+        margin-left: 1em;
+      }
+
+      &__menu-buttons {
+        margin-right: -97px;
+        .container {
+          &__button {
+            background-color: $secondary-background;
+            margin-top: calc(#{$mobile-screen}/ 100);
+            color: $secondary-text-color;
+            border: none;
+            font-family: "Lato", sans-serif;
+            border-radius: 2em;
+            font-size: 1.6em;
+            width: 8em;
+            right: 0;
+            animation: Fade_In 1s ease-in;
+          }
+        }
+      }
+
+      &__buttons-container {
+        &__learn-more-button {
+          margin-right: -100px;
+        }
+      }
+
+      @include homepage-image;
+    }
+
+    .navbar-links {
+      &__path {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+// scaling the homepage image to different screens
+@mixin homepage-image {
+  width: calc(100vh / 4);
+  height: calc(100vh / 3);
+  left: 0;
+  bottom: 0;
+  position: absolute;
+}

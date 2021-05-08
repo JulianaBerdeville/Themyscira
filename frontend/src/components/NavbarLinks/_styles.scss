@@ -1,21 +1,23 @@
+@import "../../assets/scss/conf.scss";
+
 .navbar-links {
-    display: flex;
-    flex-direction: row;
-    margin-top: -3rem;
-    margin-left: 6rem;
-    margin-bottom: 1.7rem;
+  display: flex;
+  flex-direction: row;
+  margin-top: -3rem;
+  margin-left: 6rem;
+  margin-bottom: 1.7rem;
+  position: absolute;
 
-        &__list-item {
-            list-style-type: none;
-            
-        }
+  &__list-item {
+    list-style-type: none;
+  }
 
-        &__path {
-            margin: 0.5rem;
-            text-decoration: none;
-            color: #07090F;
-            font-family: 'Playfair Display', serif;
-        }
-
-    
+  &__path {
+    margin: 0.5rem;
+    text-decoration: none;
+    color: #07090f;
+    font-family: "Playfair Display", serif;
+  }
 }
+
+@include small-phones;

@@ -1,3 +1,5 @@
+@import "../../assets/scss/conf.scss";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@
 
   &__button {
     background-color: #a37c40;
-    margin-top: 25px;
+    margin-top: calc(#{$mobile-screen}/ 100);
     color: #e5e5e5;
     border: none;
     font-family: "Lato", sans-serif;
