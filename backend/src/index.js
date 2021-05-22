@@ -172,15 +172,23 @@
 
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser')
-const serverPort = process.env.PORT;
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const serverPort = process.env.PORT || 3001;
+require('./controllers/authController')(app);
+require('./controllers/postController')(app); 
+require('./controllers/commentController')(app); 
+require('./controllers/replyController')(app); 
+require('./controllers/userController')(app); 
 const app = express();
-
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+
 app.listen(serverPort, () => {
   console.log(`>>> HOORRAY :-) I'm alive on http://localhost:${serverPort} <<<`);
 });
 
-require('./controllers/authController')(app) //aqui eu instancio o authController no server.js e repasso o app pra ele
-require('./controllers/projectController')(app) 
+module.exports = app;
