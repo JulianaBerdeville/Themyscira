@@ -2,8 +2,12 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.json');
+const crypto = require('crypto'); 
+const mailer = require('../modules/mailer');  
 
 const User = require('../models/user');
+const { use } = require('../modules/mailer');
+const { inflate } = require('zlib');
 
 const router = express.Router();
 
@@ -49,6 +53,82 @@ router.post('/authenticate', async (req, res) => {
   res.status(200).send({message: 'Authentication complete! ', token});
 });
 
+router.post('/forgot_password', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).send({error: 'User not found.'});
+    }
+
+    const token = crypto.randomBytes(20).toString('hex'); //criando token de 20 char em uma string em hexadecimal
+
+    const now = new Date();
+    now.setHours(now.getHours() +1);
+
+    await User.findByIdAndUpdate(user.id, {
+      '$set': {
+        passwordResetToken: token,
+        passwordResetExpires: now,
+      }
+    });
+
+    const mailOptions = {
+      from: 'no-reply@themyscirra.com',
+      to: 'themyscirauser@gmail.com',
+      template: 'forgot_password',
+      context: { token }
+    };
+    
+    mailer.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        res.status(400).send({error: 'Could not send email.'})
+      } else {
+        res.status(200).send({message: 'Email sent successfully! Amen'})
+        console.log('Email enviado: ' + info.response);
+      }
+    });
+
+    console.log(token, now);
+
+  } catch(error) {
+    res.status(400).send({error: 'Error on forgot password. Try again.'});
+  }
+});
+
+router.post('/reset_password', async(req, res) => {
+  const { email, token, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email }).select('+passwordResetToken passwordResetExpires');
+
+    if (!user) {
+      res.status(400).send({error: 'User not found.'})
+    }
+
+    if (token !== user.passwordResetToken) {
+      return res.status(400).send({error: 'Token invalid.'});
+    }
+
+    const now = new Date();
+
+    if (now > user.passwordResetExpires) {
+      return res.status(400).send({error: 'Token expired.'});
+    }
+
+    user.password =  password;
+
+    await user.save();
+
+    res.status(200).send({message: 'Password reset successfully.'});
+
+  } catch (error) {
+    res.status(400).send({error: 'Could not reset password.'});
+  }
+});
 module.exports = app =>  app.use('/auth', router) //passando o prefixo 'auth' pra esse router
 
 //Esse arquivo de autenticação precisa ser referenciado no arquivo principal.
