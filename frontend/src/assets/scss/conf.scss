@@ -3,11 +3,20 @@ $background: #b49082;
 $secondary-background: #a37c40;
 $primary-text-color: #07090f;
 $secondary-text-color: #e5e5e5;
+$input-background: #ebd3ca;
 
 $mobile-screen: 800px;
 $gutter: 8px;
 
 //mixins:
+
+// avoid content to reach page's borders and align items to flex column
+@mixin avoid-border-and-align-columns {
+  width: calc(100% - 40px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
 
 //  big landscape tablets, laptops, and desktops views
 @mixin desktop-view {
@@ -65,14 +74,20 @@ $gutter: 8px;
 
 @mixin small-phones {
   @media only screen and (max-width: 360px) and (min-width: 320px) {
-    .homepage {
+    .page-container {
+      width: calc(100% - 40px);
+      margin: 0 auto;
       left: 0px;
-      background-color: $background;
       overflow: hidden;
       top: 0px;
       bottom: 0px;
       right: 0px;
       position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
 
       &__title {
         margin-top: -0.5em;

@@ -1,0 +1,174 @@
+@import "../../../assets/scss/conf.scss";
+
+@include desktop-view;
+
+@include hi-res-desktop-view;
+
+@include small-phones;
+
+.login-page {
+  @media only screen and (min-width: 320px) {
+   
+    &__background {
+      @include avoid-border-and-align-columns; 
+    }
+
+    &__image-asset {
+      @include homepage-image;
+      z-index: 1;
+    }
+
+    &__footer {
+      display: none;
+    }
+
+    &__title {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: $primary-text-color;
+      font-size: 2em;
+      position: relative;
+      margin-top: 1em;
+      margin-bottom: 2em;
+      text-align: center;
+      animation: Fade_In ease-in;
+    }
+
+    &__first-description {
+      font-family: "Lato", sans-serif;
+      color: $primary-text-color;
+      font-size: 1.2em;
+      margin-top: -1em;
+      margin-bottom: 1em;
+      margin-right: 1em;
+      text-align: right;
+      animation: Fade_In 2s ease-in;
+    }
+
+    &__first-description-alt {
+      font-family: "Lato", sans-serif;
+      color: $primary-text-color;
+      font-size: 1.2em;
+      margin-top: -1em;
+      margin-bottom: 1em;
+      margin-right: 1em;
+      text-align: right;
+      animation: Slide_Up 1s;
+    }
+
+    &__learn-more-button {
+      background-color: $secondary-background;
+      color: $secondary-text-color;
+      border: none;
+      font-family: "Lato", sans-serif;
+      border-radius: 2em;
+      font-size: 2em;
+      width: calc(#{$mobile-screen} / 5);
+      padding: $gutter/2;
+      right: 0;
+      animation: Slide_Up_And_Fade_In 2s;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+    }
+
+    &__learn-more-button-alt {
+      background-color: $secondary-background;
+      color: $secondary-text-color;
+      border: none;
+      font-family: "Lato", sans-serif;
+      border-radius: 2em;
+      font-size: 2em;
+      width: calc(#{$mobile-screen} / 5);
+      padding: $gutter/2;
+      right: 0;
+      display: flex;
+      animation: Slide_Up 1s;
+      justify-content: center;
+      align-self: center;
+    }
+
+    &__login-inputs {
+      margin-top: -3em;
+      animation: Fade_In 2s;
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+
+
+      label {
+        font-family: "Lato", sans-serif;
+        color: $primary-text-color;
+        font-weight: bold;
+        float: left;
+        margin-right: 15px;
+        width: 100px;
+        margin-bottom: 0.5em;
+      }
+
+      &__data-input {
+        border: none;
+        padding: $gutter/2;
+        margin-bottom: 1.5em;
+        background-color: $input-background;
+        width: calc(#{$mobile-screen}/3);
+        height: calc(#{$mobile-screen}/20);
+      }
+      
+      &__submit-input {
+        background-color: $secondary-background;
+        color: $secondary-text-color;
+        border: none;
+        font-family: "Lato", sans-serif;
+        border-radius: 2em;
+        font-size: 2em;
+        width: calc(#{$mobile-screen} / 5);
+        padding: $gutter/2;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+      }
+
+      &__password-recovery {
+        font-family: "Lato", sans-serif;
+        color: $primary-text-color;
+        text-decoration: underline;
+        font-size: 1em;
+        text-align: center;
+        margin-top: 1em;
+      }
+    }
+  }
+}
+
+@keyframes Slide_Up {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-500px);
+  }
+}
+
+@keyframes Slide_Up_And_Fade_In {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(250px);
+  }
+}
+
+@keyframes Fade_In {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

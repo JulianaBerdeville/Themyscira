@@ -36,6 +36,8 @@ router.post('/register', async (req, res) => {
 
 router.post('/authenticate', async (req, res) => {
   const { email, password } = req.body;
+
+  console.log('data from frontend --> ', req.body);
   //buscando usuário por email, sem exibir a senha e verificando se há senha para este usuário
   const user = await User.findOne({ email }).select('+password'); 
 
@@ -77,7 +79,7 @@ router.post('/forgot_password', async (req, res) => {
 
     const mailOptions = {
       from: 'no-reply@themyscirra.com',
-      to: 'themyscirauser@gmail.com',
+      to: email,
       template: 'forgot_password',
       context: { token }
     };
@@ -100,7 +102,7 @@ router.post('/forgot_password', async (req, res) => {
 });
 
 router.post('/reset_password', async(req, res) => {
-  const { email, token, password } = req.body;
+  const { email, token, newPassword } = req.body;
 
   try {
     const user = await User.findOne({ email }).select('+passwordResetToken passwordResetExpires');
@@ -119,13 +121,14 @@ router.post('/reset_password', async(req, res) => {
       return res.status(400).send({error: 'Token expired.'});
     }
 
-    user.password =  password;
+    user.password =  newPassword;
 
     await user.save();
 
     res.status(200).send({message: 'Password reset successfully.'});
 
   } catch (error) {
+    console.log('why did it went wrong --> ', error);
     res.status(400).send({error: 'Could not reset password.'});
   }
 });

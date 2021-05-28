@@ -10,7 +10,7 @@ function Navbar() {
         setNavbarLinks(!navbarLinks);
     };
     return (
-        <>
+        <div>
             <div className="spheric-navbar" onClick={handleChange}>
                 {
                     (navbarLinks === false)
@@ -21,7 +21,7 @@ function Navbar() {
             {
                 navbarLinks && <NavbarLinksComponent />
             }
-        </>
+        </div>
     )
 }
 

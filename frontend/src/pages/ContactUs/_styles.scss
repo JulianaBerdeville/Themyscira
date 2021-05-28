@@ -1,14 +1,14 @@
+@import "../../assets/scss/conf.scss";
+
 .contact-us {
+@media only screen and (min-width: 320px) {
   &__background {
-    height: 100vh;
-    width: 100vw;
-    background-color: #b49082;
-    overflow: hidden;
+    @include avoid-border-and-align-columns; 
   }
 
   &__title {
-    font-family: "Lato", sans-serif;
-    color: #07090f;
+    font-family: "Playfair Display", serif;
+    color: $primary-text-color;
     font-size: 2.2em;
     text-align: center;
     margin-bottom: 1rem;
@@ -17,55 +17,135 @@
 
   &__horizontal-line {
     width: 85%;
-    border-color: #07090f;
+    border-color: $secondary-background;
     margin: auto;
   }
 
   &__page-description {
-    font-family: "Playfair Display", serif;
-    color: #07090f;
+    font-family: "Lato", sans-serif;
+    color: $primary-text-color;
     margin-bottom: 1em;
     margin-top: 1.2em;
     margin-left: 0.4em;
   }
 
+  &__page-description-alt {
+    font-family: "Lato", sans-serif;
+    color: $primary-text-color;
+    margin-bottom: 1em;
+    margin-top: 1.2em;
+    margin-left: 0.4em;
+    animation: Slide_Up 1s;
+
+  }
+
   &__form-container {
-    margin-top: 6em;
+    margin-top: 1em;
     display: flex;
     flex-direction: column;
-    margin-left: 0.4em;
+
+    
 
     &__label {
-      font-size: 1.2em;
-      font-family: "Lato", sans-serif;
+      color: $primary-text-color;
       font-weight: bold;
-      color: #07090f;
+      float: left;
+      margin-right: 15px;
+      width: 100px;
+      margin-bottom: 0.5em;
+      font-size: 1.5em;
+      font-family: "Playfair Display", serif;
+      color:$primary-text-color;
     }
 
     &__input {
+      padding: $gutter/2;
+      background-color: $input-background;
       border: none;
-      background-color: #c4c4c4;
       margin-bottom: 3em;
       height: 2em;
-      width: 90%;
     }
 
     &__textarea {
-      background-color: #c4c4c4;
-      width: 90%;
+      border: none;
+      background-color: $input-background;
+      width: 100%;
     }
 
     &__submit-button {
-      margin-right: 0.5rem;
-      margin-top: 1rem;
-      width: 120px;
-      height: 60px;
-      background-color: #a37c40;
-      color: #e5e5e5;
+      background-color: $secondary-background;
+      color: $secondary-text-color;
       border: none;
       font-family: "Lato", sans-serif;
+      border-radius: 2em;
       font-size: 2em;
-      align-self: center;
+      width: calc(#{$mobile-screen} / 5);
+      display: flex;
+      justify-content: center;
+      margin-top: 1em;
+      margin-left: 2em;
+    }
+  }
+
+  &__form-container-alt {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    animation: Slide_Up 1s;
+
+    &__label {
+      color: $primary-text-color;
+      font-weight: bold;
+      float: left;
+      margin-right: 15px;
+      width: 100px;
+      margin-bottom: 0.5em;
+      font-size: 1.5em;
+      font-family: "Playfair Display", serif;
+      color:$primary-text-color;
+    }
+
+    &__input {
+      padding: $gutter/2;
+      background-color: $input-background;
+      border: none;
+      margin-bottom: 3em;
+      height: 2em;
+    }
+
+    &__textarea {
+      border: none;
+      background-color: $input-background;
+      width: 100%;
+    }
+
+    &__submit-button {
+      background-color: $secondary-background;
+      color: $secondary-text-color;
+      border: none;
+      font-family: "Lato", sans-serif;
+      border-radius: 2em;
+      font-size: 2em;
+      width: calc(#{$mobile-screen} / 5);
+      display: flex;
+      justify-content: center;
+      margin-top: 1em;
+      margin-left: 2em;
     }
   }
 }
+}
+
+@keyframes Slide_Up {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-500px);
+  }
+}
+
+@include desktop-view;
+@include hi-res-desktop-view;
+@include small-phones;

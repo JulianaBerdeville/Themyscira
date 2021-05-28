@@ -1,0 +1,202 @@
+@import "../../../assets/scss/conf.scss";
+
+
+.password-recovery {
+  @media only screen and (min-width: 320px) {
+    &__background {
+      @include avoid-border-and-align-columns; 
+    }
+    
+    &__image-asset {
+      @include homepage-image;
+      width: calc(100vh / 6);
+      height: calc(100vh / 3);
+      z-index: 1;
+    }
+
+    &__footer {
+      display: none;
+    }
+
+    &__title {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: $primary-text-color;
+      font-size: 2em;
+      position: relative;
+      margin-top: 1em;
+      margin-bottom: 2em;
+      text-align: center;
+      animation: Fade_In ease-in;
+    }
+
+    &__first-description {
+      font-family: "Lato", sans-serif;
+      color: #07090f;
+      font-size: 1.2em;
+      margin-bottom: 2em;
+      margin-right: 1em;
+      margin-top: -2em;
+      text-align: center;
+      animation: Fade_In 2s ease-in;
+    }
+
+    &__second-description {
+      font-family: "Lato", sans-serif;
+      color: #07090f;
+      font-size: 1.2em;
+      margin-bottom: 2em;
+      text-align: center;
+      animation: Fade_In 2s ease-in;
+    }
+
+    &__third-description {
+      font-family: "Lato", sans-serif;
+      color: #07090f;
+      font-size: 1.2em;
+      margin-bottom: 2em;
+      text-align: center;
+      animation: Fade_In 2s ease-in;
+    }
+
+    &__form {
+      animation: Fade_In 2s;
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      margin-top: -1.5em;
+
+      label {
+        font-family: "Lato", sans-serif;
+        color: $primary-text-color;
+        font-weight: bold;
+        float: left;
+        margin-right: 15px;
+        width: 100px;
+        margin-bottom: 0.5em;
+      }
+
+      &__email-input {
+        border: none;
+        padding: $gutter/2;
+        margin-bottom: 1.5em;
+        background-color: $input-background;
+        width: calc(#{$mobile-screen}/3);
+        height: calc(#{$mobile-screen}/20);
+      }
+      
+      &__submit-input {
+        background-color: #a37c40;
+        color: $secondary-text-color;
+        border: none;
+        font-family: "Lato", sans-serif;
+        border-radius: 2em;
+        font-size: 2em;
+        width: calc(#{$mobile-screen} / 5);
+        padding: $gutter/2;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+      }
+
+      &__back-to-login {
+        font-family: "Lato", sans-serif;
+        color: $primary-text-color;
+        text-decoration: underline;
+        font-size: 1em;
+        text-align: center;
+        margin-top: 1em;
+      }
+    }
+
+    &__form-alt {
+      animation: Fade_In 2s;
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      animation: Slide_Up 1s;
+
+      label {
+        font-family: "Lato", sans-serif;
+        color: $primary-text-color;
+        font-weight: bold;
+        float: left;
+        margin-right: 15px;
+        width: 100px;
+        margin-bottom: 0.5em;
+      }
+
+      &__email-input {
+        border: none;
+        padding: $gutter/2;
+        margin-bottom: 1.5em;
+        background-color: $input-background;
+        width: calc(#{$mobile-screen}/3);
+        height: calc(#{$mobile-screen}/20);
+      }
+      
+      &__submit-input {
+        background-color: #a37c40;
+        color: $secondary-text-color;
+        border: none;
+        font-family: "Lato", sans-serif;
+        border-radius: 2em;
+        font-size: 2em;
+        width: calc(#{$mobile-screen} / 5);
+        padding: $gutter/2;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+      }
+
+      &__back-to-login {
+        font-family: "Lato", sans-serif;
+        color: $primary-text-color;
+        text-decoration: underline;
+        font-size: 1em;
+        text-align: center;
+        margin-top: 1em;
+      }
+    }
+
+    &__back-to-login {
+      font-family: "Lato", sans-serif;
+      color: $primary-text-color;
+      text-decoration: underline;
+      font-size: 1em;
+      text-align: center;
+    }
+  }
+}
+
+@keyframes Slide_Up {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-500px);
+  }
+}
+
+@keyframes Slide_Up_And_Fade_In {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(250px);
+  }
+}
+
+@keyframes Fade_In {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

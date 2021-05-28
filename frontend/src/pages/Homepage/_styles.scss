@@ -3,10 +3,7 @@
 .homepage {
   @media only screen and (min-width: 320px) {
     &__background {
-      height: 100vh;
-      width: 100vw;
-      background-color: $background;
-      overflow: hidden;
+      @include avoid-border-and-align-columns;
     }
 
     &__image-asset {
@@ -21,30 +18,49 @@
     &__title {
       font-family: "Playfair Display", serif;
       font-style: italic;
-      color: #07090f;
+      color: $primary-text-color;
       font-size: 2.5em;
       position: relative;
-      margin: 1rem;
+      margin-top: -0.5em;
+      margin-right: 0.5em;
       text-align: right;
       animation: Fade_In ease-in;
     }
 
     &__first-description {
       font-family: "Lato", sans-serif;
-      color: #07090f;
+      color: $primary-text-color;
       font-size: 1.2em;
       margin: 1rem;
       text-align: right;
       animation: Fade_In 2s ease-in;
     }
 
+    &__first-description-alt {
+      font-family: "Lato", sans-serif;
+      color: $primary-text-color;
+      font-size: 1.2em;
+      margin: 1rem;
+      text-align: right;
+      animation: Slide_Up 1s;
+    }
+
     &__second-description {
       font-family: "Lato", sans-serif;
-      color: #07090f;
+      color: $primary-text-color;
       font-size: 1.2em;
       margin: 1rem;
       text-align: right;
       animation: Fade_In 2s ease-in;
+    }
+
+    &__second-description-alt {
+      font-family: "Lato", sans-serif;
+      color: $primary-text-color;
+      font-size: 1.2em;
+      margin: 1rem;
+      text-align: right;
+      animation: Slide_Up 2s;
     }
 
     &__buttons-container {
@@ -55,8 +71,8 @@
       margin-top: 1em;
 
       &__learn-more-button {
-        background-color: #a37c40;
-        color: #e5e5e5;
+        background-color: $secondary-background;
+        color: $secondary-text-color;
         border: none;
         font-family: "Lato", sans-serif;
         border-radius: 2em;
@@ -88,6 +104,16 @@
   }
 }
 
+@keyframes Fade_Out {
+  0% {
+    visibility: visible;
+  }
+
+  100% {
+    visibility: hidden;
+  }
+}
+
 @keyframes Fade_In {
   0% {
     opacity: 0;
@@ -95,5 +121,24 @@
 
   100% {
     opacity: 1;
+  }
+}
+@keyframes Slide_Up {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-500px);
+  }
+}
+
+@keyframes Slide_Up_Alt {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-200px);
   }
 }

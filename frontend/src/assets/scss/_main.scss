@@ -3,16 +3,27 @@
   padding: 0;
 }
 
+@import "./conf.scss";
+body {
+  background-color: $background;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Playfair+Display&display=swap");
 
 //importing pages'scss files:
+@import "../../pages/Authentication/Login/_styles.scss";
+@import "../../pages/Authentication/PasswordRecovery/_styles.scss";
+@import "../../pages/Authentication/PasswordReset/_styles.scss";
+@import "../../pages/Authentication/SignIn/_styles.scss";
 @import "../../pages/Homepage/_styles.scss";
 @import "../../pages/AboutUs/_styles.scss";
 @import "../../pages/Forum/_styles.scss";
 @import "../../pages/ForumTopic/_styles.scss";
+@import "../../pages/ForumPost/_styles.scss";
 @import "../../pages/ContactUs/_styles.scss";
 
 //importing component's scss files:
 @import "../../components/Navbar/_styles.scss";
 @import "../../components/Button/_styles.scss";
 @import "../../components/NavbarLinks/_styles.scss";
+@import "../../components/Loader/_styles.scss";

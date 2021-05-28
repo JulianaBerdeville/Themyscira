@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import picture from '../../assets/images/homepageAsset.png';
 import Navbar from '../../components/Navbar/Navbar';
 import Button from '../../components/Button/Button';
 
@@ -25,6 +24,10 @@ function Home() {
         history.push('/fale-conosco');
     };
 
+    const goToCreateTopicPage = () => {
+        history.push('/criar-conversa');
+    };
+
     const CallInOtherButtons = () => {
         if (buttonRendered) {
             return (
@@ -32,22 +35,19 @@ function Home() {
                     <Button text="rodas de conversa" functionName={goToForumPage} />
                     <Button text="sobre nós" functionName={goToAboutUsPage} />
                     <Button text="fale com a gente" functionName={goToContactUsPage} />
+                    <Button text="criar conversa" functionName={goToCreateTopicPage} />
                 </div>
             );
         }
-        return (<></>)
+        return (<div></div>)
     };
 
     return (
-        <>
             <div className="homepage__background">
-                <img className="homepage__image-asset" src={picture}
-                    alt="foto de uma mulher usando brincos quadrados e rosa branca adornando o ombro esquerdo"
-                />
                 <Navbar />
                 <h1 className="homepage__title">Olá!</h1>
                 <p className="homepage__first-description">
-                    Este é um espaço <b>GRATUITO</b> elaborado
+                Este é um espaço <b>GRATUITO</b> elaborado
                 com a intenção de proporcionar um
                 amplo debate sobre a violência doméstica
                 contra as mulheres.
@@ -62,9 +62,9 @@ function Home() {
                         setButtonRendered(true);
                         setButtonDisplayed(false);
                     }}
-                        className="homepage__buttons-container__learn-more-button"
+                    className="homepage__buttons-container__learn-more-button"
                     > saiba mais </button> </div>
-                    : <></>
+                    : <div></div>
                 }
                 <CallInOtherButtons />
 
@@ -76,7 +76,6 @@ function Home() {
                     </div>
                 </div>
             </div>
-        </>
     );
 }
 

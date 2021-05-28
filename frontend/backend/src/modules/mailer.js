@@ -15,7 +15,7 @@ transport.use('compile', hbs({
     defaultLayout: undefined,
     partialsDir: path.resolve('./src/resources/mail/')
   },
-  viewPath: path.resolve('./src/resources/mail/auth'),
+  viewPath: path.resolve('./src/resources/mail/sendMail'),
   extName: '.html',
 }));
 

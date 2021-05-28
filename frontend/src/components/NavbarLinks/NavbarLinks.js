@@ -5,7 +5,7 @@ function NavbarLinks() {
     let history = useHistory();
 
     const goToHomePage = () => {
-        history.push('/');
+        history.push('/home');
     }
     const goToAboutUsPage = () => {
         history.push('/sobre-nos');
@@ -15,7 +15,6 @@ function NavbarLinks() {
     }
 
     return (
-        <>
             <div>
                 <ul className="navbar-links">
                     <li className="navbar-links__list-item">
@@ -31,7 +30,6 @@ function NavbarLinks() {
                     </li>
                 </ul>
             </div>
-        </>
     );
 }
 
