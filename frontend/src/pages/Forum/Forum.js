@@ -50,10 +50,6 @@ function Forum() {
         <div key={post._id}>
           <div className="forum__posts-container">
             <div className="forum__posts-container__left-container">
-              <div className="forum__posts-container__left-container__votes-wrapper">
-                <span className="forum__posts-container__left-container__votes-wrapper__title">votos</span>
-                <span className="forum__posts-container__left-container__votes-wrapper__number">{post.votes ? post.votes : 0}</span>
-              </div>
               <div className="forum__posts-container__left-container__response-wrapper">
                 <span className="forum__posts-container__left-container__response-wrapper__number">{post.comments ? post.comments.length : 0}</span>
                 <span className="forum__posts-container__left-container__response-wrapper__title">respostas</span>

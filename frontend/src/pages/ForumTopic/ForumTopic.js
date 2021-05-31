@@ -49,15 +49,6 @@ function ForumTopic() {
         setVotesVisible(true);
     };
 
-
-    const submitVoteHandler = async (e) => {
-        e.preventDefault();
-        const response = await axios.post(`http://localhost:5000/posts/${postId}`, { headers: { Authorization: "Bearer " + userToken } });
-        if (response) {
-            console.log('backend res --> ', response);
-        }
-    };
-
     const getApiData = async () => {
         const postResponse = await axios.get(`http://localhost:5000/posts/${postId}`, { headers: { Authorization: "Bearer " + userToken } });
         const commentsResponse = await axios.get(`http://localhost:5000/comments/${postId}`, { headers: { Authorization: "Bearer " + userToken } });
@@ -114,14 +105,7 @@ function ForumTopic() {
                                  { postData.author[0].username }
                               </span>
                         </p>
-                        
-                    <form onSubmit={submitVoteHandler}>
-                        <button
-                            type="submit"
-                            className="forum-topic__post-container__vote-button">
-                            votar neste post
-                        </button>
-                    </form>
+    
                 </div>
 
                 <hr className="forum-topic__horizontal-line"></hr>

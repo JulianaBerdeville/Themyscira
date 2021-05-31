@@ -10,7 +10,6 @@ app.use(cors());
 require('./controllers/authController')(app);
 require('./controllers/postController')(app); 
 require('./controllers/commentController')(app); 
-require('./controllers/replyController')(app); 
 require('./controllers/userController')(app); 
 require('./controllers/contactController')(app); 
 app.use(logger('dev'));

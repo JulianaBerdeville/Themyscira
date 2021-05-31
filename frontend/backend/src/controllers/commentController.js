@@ -4,95 +4,91 @@ const authMiddleware = require('../middlewares/auth');
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const User = require('../models/user');
-var Sentiment = require('sentiment');
-var sentiment = new Sentiment();
-var ptBrLanguage = {
-  labels: {
-    'idiota': -5,
-    'escrota': -5,
-    'escroto': -5,
-    'bunda mole': -5,
-    'nojenta': 0,
-    'insosa': 0,
-    'xoxa': 0,
-    'manca': 0,
-    'cramunhão': -1,
-    'inseta': -1,
-    'mocreia': -5,
-    'lambisgoia': -5,
-    'retardado': -5,
-    'pau': -10,
-    'pauzinho': 0,
-    'pinto': -10,
-    'piru': -10,
-    'piruzinho': -10,
-    'cu': -10,
-    'um merda': -10,
-    'burrão': -5,
-    'cocô': -1,
-    'estúpido': -1,
-    'estrupício': -10,
-    'energúmino': -10,
-    'otário': -10,
-    'desgraçado': -10,
-    'basculho': -10,
-    'puta que pariu': -10,
-    'filho da puta': -10,
-    'caralho': -10,
-    'caraio': -10,
-    'merda': -10,
-    'retardada': -10,
-    'animal': -1,
-    'corno': -10,
-    'bolsonaro': -1,
-    'genocida': -1,
-    'miliciano': -1,
-    'bandido': -1,
-    'puto': -10,
-    'cuzão': -10,
-    'cuzão de merda': -10,
-    'seu brocha': -5,
-    'seu viado': -5,
-    'sua bicha': -5,
-    'demônio': -5,
-    'uma merda': -10,
-    'burrona': -5,
-    'estúpida': -1,
-    'estrupícia': -10,
-    'energúmina': -10,
-    'otária': -10,
-    'desgraçada': -10,
-    'corna': -10,
-    'miliciana': -1,
-    'bandida': -1,
-    'puta': -10,
-    'cuzona': -10,
-    'quenga': -10,
-    'piranha': -5,
-    'xexelenta': -5,
-    'vadia': -10,
-    'vaca': -2,
-    'vagabunda': -2,
-    'arrombada': -10,
-    'cadela': -1,
-    'cachorra': -1,
-    'buceta': -10,
-    'foder': -10,
-    'fuder': -10,
-    'xereca': -10,
-    'greluda': -10,
-    'suja': -1,
-    'vadiazinha': -10,
-    'xerecuda': -10,
-    'bucetuda': -10,
-    'urubu': -1,
-    'banana': -1,
-    'pamonha': -1,
-    'carniceira': -2,
-    'égua': -2,
-    'grelo': -10,
-  },
-
+const natural = require('natural');
+const SW = require('stopword')
+ var Sentiment = require('sentiment');
+ var sentiment = new Sentiment();
+ var ptBrLanguage = {
+   labels: {
+     'idiota': -5,
+     'escrota': -5,
+     'escroto': -5,
+     'bunda mole': -5,
+     'nojenta': 0,
+     'insosa': 0,
+     'xoxa': 0,
+     'manca': 0,
+     'cramunhao': -1,
+     'inseta': -1,
+     'mocreia': -5,
+     'lambisgoia': -5,
+     'retardado': -5,
+     'pau': -10,
+     'pauzinho': 0,
+     'pinto': -10,
+     'piru': -10,
+     'piruzinho': -10,
+     'cu': -10,
+     'um merda': -10,
+     'burrão': -5,
+     'estupido': -1,
+     'estruicio': -10,
+     'energumino': -10,
+     'otario': -10,
+     'desgraçado': -10,
+     'basculho': -10,
+     'caralho': -10,
+     'caraio': -10,
+     'merda': -10,
+     'retardada': -10,
+     'animal': -1,
+     'corno': -10,
+     'bolsonaro': -1,
+     'genocida': -1,
+     'miliciano': -1,
+     'bandido': -1,
+     'puto': -10,
+     'cuzao': -10,
+     'brocha': -5,
+     'viado': -5,
+     'bicha': -5,
+     'demonio': -5,
+     'burrona': -5,
+     'estupida': -1,
+     'estrupicia': -10,
+     'energumina': -10,
+     'otaria': -10,
+     'desgraçada': -10,
+     'corna': -10,
+     'miliciana': -1,
+     'bandida': -1,
+     'puta': -10,
+     'cuzona': -10,
+     'quenga': -10,
+     'piranha': -5,
+     'xexelenta': -5,
+     'vadia': -10,
+     'vaca': -2,
+     'vagabunda': -2,
+     'arrombada': -10,
+     'cadela': -1,
+     'cachorra': -1,
+     'buceta': -10,
+     'foder': -10,
+     'fuder': -10,
+     'xereca': -10,
+     'greluda': -10,
+     'suja': -1,
+     'vadiazinha': -10,
+     'xerecuda': -10,
+     'bucetuda': -10,
+     'urubu': -1,
+     'banana': -1,
+     'pamonha': -1,
+     'carniceira': -2,
+     'egua': -2,
+     'grelo': -10,
+   },
 }; 
 
 router.use(authMiddleware);
@@ -112,7 +108,7 @@ router.get('/', async (req, res) => {
 router.get('/:postId', async (req, res) => {
   try {
     const postId = req.params.postId;
-    const commentFromThisPost = (await Comment.find({post: postId}));
+    const commentFromThisPost = (await Comment.find({ post: postId }));
     res.status(200).send({ commentFromThisPost });
   } catch (error) {
     console.log('error on listing comments from the same post --> ', error);
@@ -122,29 +118,62 @@ router.get('/:postId', async (req, res) => {
 
 //POST - Create new comment based on postId
 router.post('/:postId', async (req, res) => {
-  try {
-    const postId = req.params.postId;
 
+  function retira_acentos(str) {
+
+    let com_acento = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝŔÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿŕ";
+
+    let sem_acento = "AAAAAAACEEEEIIIIDNOOOOOOUUUUYRsBaaaaaaaceeeeiiiionoooooouuuuybyr";
+
+    let novastr = "";
+    for (let i= 0; i < str.length; i++) {
+      let troca = false;
+      for (let a = 0; a < com_acento.length; a++) {
+        if (str.substr(i, 1) === com_acento.substr(a, 1)) {
+          novastr += sem_acento.substr(a, 1);
+          troca = true;
+          break;
+        }
+      }
+      if (troca === false) {
+        novastr += str.substr(i, 1);
+      }
+    }
+    return novastr;
+  }
+
+  try {
     var sendFlag = Boolean;
+    const postId = req.params.postId;
     const authorId = req.userId;
     const author = (await User.findById(authorId)).populate('author');
     const authorData = [{ username: author.username, id: authorId }];
     sentiment.registerLanguage('pt-br', ptBrLanguage);
 
-    var commentAnalysis = sentiment.analyze(req.body.content, { language: 'pt-br' });
-    console.log(commentAnalysis)
-    if (commentAnalysis.negative.length > 0 ) {
+    const commentContentLowerCase = req.body.content.toLowerCase();
+    const commentWithoutAccentuation = retira_acentos(commentContentLowerCase)
+    const lowerCaseAndWithoutSpecialChar = commentWithoutAccentuation.replace(/[^a-zA-Z\s]+/g, '');
+
+    const tokenizer = new natural.AggressiveTokenizerPt();
+    const tokenizedReview = tokenizer.tokenize(lowerCaseAndWithoutSpecialChar);
+    const filteredReview = SW.removeStopwords(tokenizedReview, SW.ptbr);
+    const filteredReviewString = filteredReview.toString();
+
+    var commentAnalysis = sentiment.analyze(filteredReviewString, { language: 'pt-br' });
+
+    console.log('analise de sentimento --> ', commentAnalysis)
+
+    if (commentAnalysis.score < 0) {
       sendFlag = true;
     }
 
-    const comment = await Comment.create({ ...req.body, author: authorData, post: postId});
+    const comment = await Comment.create({ ...req.body, author: authorData, post: postId, analysis: commentAnalysis});
 
-    const commentFromThisPost = (await Comment.find({post: postId}));
-    
-    await Post.findOneAndUpdate(({_id: postId}), ({comments: commentFromThisPost}), {returnOriginal: false, rawResult: true});
+    const commentFromThisPost = (await Comment.find({ post: postId }));
+
+    await Post.findOneAndUpdate(({ _id: postId }), ({ comments: commentFromThisPost }), { returnOriginal: false, rawResult: true });
 
     if (sendFlag) {
-      console.log(sendFlag)
       res.status(400).send({ error: 'Comment content invalid or unapropriated.' });
 
     } else {

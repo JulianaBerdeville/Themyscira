@@ -16,10 +16,6 @@ const CommentSchema = new mongoose.Schema({
     ref: 'Post',
     require: true, //preciso referenciar qual model eu to querendo criar relacao
   },
-  replies: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Replies',
-  }],
   CreatedAt: {
     type: Date,
     default: Date.now,
