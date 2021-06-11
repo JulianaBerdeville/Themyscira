@@ -72,8 +72,8 @@ function LoginPage() {
             contra as mulheres.
           </p>
 
-        <button className={(buttonDisplayed === true) ? "login-page__learn-more-button"
-          : "login-page__learn-more-button-alt"}
+        <button className={(buttonDisplayed === true) ? "login-page__login-button"
+          : "login-page__login-button-alt"}
           onClick={changeState}>
             login
           </button>
@@ -87,27 +87,30 @@ function LoginPage() {
           : 
           <div> 
           <form className="login-page__login-inputs" onSubmit={submitHandler}>
-            <label htmlFor="email-input">email:</label>
-            <input 
-            id="email"
-            name="email"
-            type="email" 
-            required
-            placeholder="seu email aqui" 
-            className="login-page__login-inputs__data-input" 
-            onChange={handleTextInputs} />
-            
-            <label htmlFor="password-input">password:</label>
-            <input 
-            id= "password"
-            name="password" 
-            type="password" 
-            required
-            placeholder="sua senha aqui"
-            className="login-page__login-inputs__data-input" 
-            onChange={handleTextInputs} />
-            
-            <button type="submit" className="login-page__login-inputs__submit-input">
+            <div className="login-page__input-wrapper">
+              <label htmlFor="email-input">email:</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="seu email aqui"
+                className="login-page__login-inputs__data-input"
+                onChange={handleTextInputs} />
+            </div>
+
+            <div className="login-page__input-wrapper">
+              <label htmlFor="password-input">password:</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                placeholder="sua senha aqui"
+                className="login-page__login-inputs__data-input"
+                onChange={handleTextInputs} />
+            </div>
+            <button type="submit" className="login-page__login-inputs__submit-button">
               login
             </button>
 

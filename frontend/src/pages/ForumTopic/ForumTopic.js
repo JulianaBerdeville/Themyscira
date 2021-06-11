@@ -8,20 +8,16 @@ import Navbar from '../../components/Navbar/Navbar';
 function ForumTopic() {
     const postId = sessionStorage.getItem('postId');
     const userToken = localStorage.getItem('userToken');
-
     const [isLoading, setIsLoading] = useState(true);
+    const [commentErrorVisible, setCommentErrorVisible] = useState(true);
     const [votesVisible, setVotesVisible] = useState(true);
     const [alertVisible, setAlertVisible] = useState(true);
-
-
     const [postData, setPostData] = useState();
     const [commentsData, setCommentsData] = useState();
-
     const [formData, setFormData] = useState({ content: '' });
 
-
     const handleTextInputs = (e) => {
-        const { name, value } = e.target || { name: null, value: null };
+        let { name, value } = e.target || { name: null, value: null };
         if (name && value) {
             setFormData((prevState) => {
                 let obj = { ...prevState };
@@ -31,14 +27,18 @@ function ForumTopic() {
         }
     }
 
-
     const submitHandler = async (e) => {
         e.preventDefault();
-        let response = await axios.post(`http://localhost:5000/comments/${postId}`, formData, { headers: { Authorization: "Bearer " + userToken } });
-        if (response) {
-            setAlertVisible(false);
-            console.log(response)
+        try {
+            let response = await axios.post(`http://localhost:5000/comments/${postId}`, formData, { headers: { Authorization: "Bearer " + userToken } });
+            if (response) {
+                setAlertVisible(false);
+                console.log(response);
+            }
+        } catch (e) {
+            setCommentErrorVisible(false);
         }
+        
     };
 
     const showComments = () => {
@@ -52,7 +52,8 @@ function ForumTopic() {
     const getApiData = async () => {
         const postResponse = await axios.get(`http://localhost:5000/posts/${postId}`, { headers: { Authorization: "Bearer " + userToken } });
         const commentsResponse = await axios.get(`http://localhost:5000/comments/${postId}`, { headers: { Authorization: "Bearer " + userToken } });
-
+        console.log('commentsResponse --> ', commentsResponse);
+        console.log('postResponse --> ', postResponse);
         if (postResponse.data && commentsResponse.data) {
             setCommentsData(commentsResponse.data);
             setPostData(postResponse.data.post);
@@ -87,7 +88,14 @@ function ForumTopic() {
                     : "forum-topic__submit-alert-alt"
                 }>
                 Seu comentário foi publicado com sucesso!
-                </div>
+            </div>
+            <div
+                className={(commentErrorVisible)
+                    ? "forum-topic__error-alert"
+                    : "forum-topic__error-alert-alt"
+                }>
+                Seu comentário foi rejeitado devido conteúdo impróprio.
+            </div>
             <Navbar />
             <div className="forum-topic__page-container">
 
@@ -160,7 +168,7 @@ function ForumTopic() {
                             }
                         </p>
 
-                        {(!postData.comments.length)
+                        {(postData.comments.length <= 1)
                             ? <></>
                             :
                             <button
@@ -222,6 +230,7 @@ function ForumTopic() {
                         spellCheck="default"
                         onChange={handleTextInputs}
                         className="forum-topic__response-container__content"
+                        type="reset"
                         placeholder="Tem algo a comentar?">
                     </textarea>
 

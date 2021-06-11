@@ -277,79 +277,58 @@
     font-family: "Lato", sans-serif;
     border-radius: 2em;
     font-size: 1em;
-    margin-left: -3em;
   }
 
   &__submit-alert {
     display: none;
-    padding: 20px;
-    background-color: #a37c40;
-    color: #e5e5e5;
-
   }
 
   &__submit-alert-alt {
-    animation: Slide_In 2s, Fade_In 2s, Slide_Out 3s, Fade_Out 1s;
-    padding: 20px;
+    z-index: 1;
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
     background-color: #a37c40;
     color: #e5e5e5;
 
   }
 
+  &__error-alert {
+    display: none;
+  }
+
+  &__error-alert-alt {
+    z-index: 1;
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    background-color: #941f1f;
+    color: #e5e5e5;
+  }
+
 }
 }
 
-@keyframes Slide_Side {
-  0% {
-    transform: translateX(0px);
-  }
-
-  100% {
-    transform: translateX(-500px);
+@keyframes cssAnimation {
+  to {
+      width:0;
+      height:0;
+      overflow:hidden;
   }
 }
-
-
-@keyframes Slide_In {
-  0% {
-    transform: translateX(-500px);
-  }
-
-  100% {
-    transform: translateX(0px);
+@-webkit-keyframes cssAnimation {
+  to {
+      width:0;
+      height:0;
+      display:none;
   }
 }
-
-@keyframes Slide_Out {
-  0% {
-    transform: translateX(0px);
-  }
-
-  100% {
-    transform: translateX(-500px);
-  }
-}
-
-@keyframes Fade_Out {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes Fade_In {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 
 @include desktop-view;
 @include hi-res-desktop-view;
