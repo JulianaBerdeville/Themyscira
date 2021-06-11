@@ -11,6 +11,7 @@ function ForumPost() {
     title: '',
     content: ''
   })
+  const [postId, setPostId] = useState('');
 
   const handleTextInputs = (e) => {
     const { name, value } = e.target || { name: null, value: null };
@@ -23,10 +24,6 @@ function ForumPost() {
     }
   }
 
-  const goToPostHighlight = () => {
-    history.push('/');
-  }
-
   const requestHeader = { headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` } }
 
   const submitHandler = async (e) => {
@@ -35,9 +32,15 @@ function ForumPost() {
     if (response) {
       setVisible(false);
       setFormDisplayed(false);
+      setPostId(response.data.post._id);
       console.log('backend res --> ', response);
       console.log('submitted data --> ', formData);
     }
+  }
+
+  const goToPostHighlight = () => {
+    sessionStorage.setItem('postId', postId);
+    history.push('/conversa');
   }
 
   if (visible) {

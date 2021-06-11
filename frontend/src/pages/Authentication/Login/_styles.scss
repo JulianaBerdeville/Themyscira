@@ -56,7 +56,7 @@
       animation: Slide_Up 1s;
     }
 
-    &__learn-more-button {
+    &__login-button {
       background-color: $secondary-background;
       color: $secondary-text-color;
       border: none;
@@ -70,9 +70,10 @@
       display: flex;
       justify-content: center;
       align-self: center;
+      margin-left: calc(100%/4);
     }
 
-    &__learn-more-button-alt {
+    &__login-button-alt {
       background-color: $secondary-background;
       color: $secondary-text-color;
       border: none;
@@ -84,6 +85,14 @@
       right: 0;
       display: flex;
       animation: Slide_Up 1s;
+      justify-content: center;
+      align-self: center;
+      margin-left: calc(100%/4);
+    }
+    
+    &__input-wrapper {
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-self: center;
     }
@@ -115,7 +124,7 @@
         height: calc(#{$mobile-screen}/20);
       }
       
-      &__submit-input {
+      &__submit-button {
         background-color: $secondary-background;
         color: $secondary-text-color;
         border: none;

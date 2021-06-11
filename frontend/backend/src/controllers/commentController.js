@@ -57,6 +57,7 @@ const SW = require('stopword')
      'estupida': -1,
      'estrupicia': -10,
      'energumina': -10,
+     'bucetuda': -10, 
      'otaria': -10,
      'desgraçada': -10,
      'corna': -10,
@@ -108,10 +109,14 @@ router.get('/', async (req, res) => {
 router.get('/:postId', async (req, res) => {
   try {
     const postId = req.params.postId;
+
     const commentFromThisPost = (await Comment.find({ post: postId }));
+
     res.status(200).send({ commentFromThisPost });
+    console.log('sending data to frontend --> ', commentFromThisPost)
   } catch (error) {
     console.log('error on listing comments from the same post --> ', error);
+    
     res.status(400).send({ error: 'Could not list this specific post.' });
   }
 });
@@ -143,7 +148,8 @@ router.post('/:postId', async (req, res) => {
   }
 
   try {
-    var sendFlag = Boolean;
+    var sendFlag = false;
+    var comment = [];
     const postId = req.params.postId;
     const authorId = req.userId;
     const author = (await User.findById(authorId)).populate('author');
@@ -161,22 +167,24 @@ router.post('/:postId', async (req, res) => {
 
     var commentAnalysis = sentiment.analyze(filteredReviewString, { language: 'pt-br' });
 
-    console.log('analise de sentimento --> ', commentAnalysis)
-
     if (commentAnalysis.score < 0) {
+      console.log("This comment was reject due it's inapropriate content and was not added to comments Schema.");
       sendFlag = true;
+    } else {
+      comment = await Comment.create({ ...req.body, author: authorData, post: postId, analysis: commentAnalysis});
+
+      let commentFromThisPost = (await Comment.find({ post: postId }));
+  
+      await Post.findOneAndUpdate(({ _id: postId }), ({ comments: commentFromThisPost }), { returnOriginal: false, rawResult: true });
+      
+      console.log('comment inserted into database. Score is ', commentAnalysis.score);
     }
-
-    const comment = await Comment.create({ ...req.body, author: authorData, post: postId, analysis: commentAnalysis});
-
-    const commentFromThisPost = (await Comment.find({ post: postId }));
-
-    await Post.findOneAndUpdate(({ _id: postId }), ({ comments: commentFromThisPost }), { returnOriginal: false, rawResult: true });
-
+    
     if (sendFlag) {
       res.status(400).send({ error: 'Comment content invalid or unapropriated.' });
-
+      console.log('score is ', commentAnalysis.score);
     } else {
+      console.log('the comment was created --> ', comment);
       return res.status(200).send({ message: 'Comment created successfully: ', comment });
     }
   } catch (error) {
