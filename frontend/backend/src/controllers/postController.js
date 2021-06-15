@@ -9,89 +9,130 @@ const SW = require('stopword')
  var Sentiment = require('sentiment');
  var sentiment = new Sentiment();
  var ptBrLanguage = {
-   labels: {
-     'idiota': -5,
-     'escrota': -5,
-     'escroto': -5,
-     'bunda mole': -5,
-     'nojenta': 0,
-     'insosa': 0,
-     'xoxa': 0,
-     'manca': 0,
-     'cramunhao': -1,
-     'inseta': -1,
-     'mocreia': -5,
-     'lambisgoia': -5,
-     'retardado': -5,
-     'pau': -10,
-     'pauzinho': 0,
-     'pinto': -10,
-     'piru': -10,
-     'piruzinho': -10,
-     'cu': -10,
-     'um merda': -10,
-     'burrão': -5,
-     'estupido': -1,
-     'estruicio': -10,
-     'energumino': -10,
-     'otario': -10,
-     'desgraçado': -10,
-     'basculho': -10,
-     'caralho': -10,
-     'caraio': -10,
-     'merda': -10,
-     'retardada': -10,
-     'animal': -1,
-     'corno': -10,
-     'bolsonaro': -1,
-     'genocida': -1,
-     'miliciano': -1,
-     'bandido': -1,
-     'puto': -10,
-     'cuzao': -10,
-     'brocha': -5,
-     'viado': -5,
-     'bicha': -5,
-     'demonio': -5,
-     'burrona': -5,
-     'estupida': -1,
-     'estrupicia': -10,
-     'energumina': -10,
-     'bucetuda': -10, 
-     'otaria': -10,
-     'desgraçada': -10,
-     'corna': -10,
-     'miliciana': -1,
-     'bandida': -1,
-     'puta': -10,
-     'cuzona': -10,
-     'quenga': -10,
-     'piranha': -5,
-     'xexelenta': -5,
-     'vadia': -10,
-     'vaca': -2,
-     'vagabunda': -2,
-     'arrombada': -10,
-     'cadela': -1,
-     'cachorra': -1,
-     'buceta': -10,
-     'foder': -10,
-     'fuder': -10,
-     'xereca': -10,
-     'greluda': -10,
-     'suja': -1,
-     'vadiazinha': -10,
-     'xerecuda': -10,
-     'bucetuda': -10,
-     'urubu': -1,
-     'banana': -1,
-     'pamonha': -1,
-     'carniceira': -2,
-     'egua': -2,
-     'grelo': -10,
-   },
+  labels: {
+    'idiota': -5,
+    'idiotas': -5,
+    'escrota': -5,
+    'escrotas': -5,
+    'escroto': -5,
+    'escrotos': -5,
+    'nojentas': 0,
+    'nojentos': 0,
+    'insosa': 0,
+    'insosas': 0,
+    'xoxa': 0,
+    'xoxas': 0,
+    'xoxo': 0,
+    'xoxos': 0,
+    'manca': 0,
+    'mancas': 0,
+    'manco': 0,
+    'mancos': 0,
+    'cramunhao': -1,
+    'inseta': -1,
+    'mocreia': -5,
+    'mocreias': -5,
+    'lambisgoia': -5,
+    'lambisgoias': -5,
+    'retardado': -5,
+    'retardados': -5,
+    'pau': -10,
+    'pauzinho': 0,
+    'pinto': -10,
+    'piru': -10,
+    'piruzinho': -10,
+    'cu': -10,
+    'cus': -10,
+    'burrão': -5,
+    'burrões': -5,
+    'estupido': -1,
+    'estupidos': -1,
+    'estupida': -1,
+    'estupidas': -1,
+    'estrupicio': -10,
+    'estrupicios': -10,
+    'energumino': -10,
+    'energuminos': -10,
+    'otario': -10,
+    'otarios': -10,
+    'desgraçado': -10,
+    'desgraçados': -10,
+    'basculho': -10,
+    'basculhos': -10,
+    'caralho': -10,
+    'caralhos': -10,
+    'caraio': -10,
+    'caraios': -10,
+    'merda': -10,
+    'merdas': -10,
+    'retardada': -10,
+    'retardadas': -10,
+    'animal': -1,
+    'corno': -10,
+    'cornos': -10,
+    'puto': -10,
+    'putos': -10,
+    'cuzao': -10,
+    'brocha': -5,
+    'brochas': -5,
+    'viado': -5,
+    'viados': -5,
+    'bicha': -5,
+    'bichas': -5,
+    'demonio': -5,
+    'demonios': -5,
+    'burrona': -5,
+    'burronas': -5,
+    'estrupicia': -10,
+    'estrupicias': -10,
+    'energumina': -10,
+    'energuminas': -10,
+    'bucetuda': -10, 
+    'bucetudas': -10, 
+    'otaria': -10,
+    'otarias': -10,
+    'desgraçada': -10,
+    'desgraçadas': -10,
+    'corna': -10,
+    'cornas': -10,
+    'bandida': -1,
+    'bandidas': -1,
+    'puta': -10,
+    'putas': -10,
+    'cuzona': -10,
+    'cuzonas': -10,
+    'quenga': -10,
+    'quengas': -10,
+    'piranha': -5,
+    'piranhas': -5,
+    'xexelenta': -5,
+    'xexelentas': -5,
+    'vadia': -10,
+    'vadias': -10,
+    'vagabunda': -2,
+    'vagabundas': -2,
+    'arrombada': -10,
+    'arrombadas': -10,
+    'buceta': -10,
+    'bucetas': -10,
+    'boceta': -10,
+    'bocetas': -10,
+    'foder': -10,
+    'fuder': -10,
+    'xereca': -10,
+    'xerecas': -10,
+    'greluda': -10,
+    'greludas': -10,
+    'vadiazinha': -10,
+    'vadiazinhas': -10,
+    'xerecuda': -10,
+    'xerecudas': -10,
+    'bocetuda': -10,
+    'bocetudas': -10,
+    'grelo': -10,
+    'grelos': -10,
+  },
 }; 
-
 router.use(authMiddleware);
 
 //GET - List all posts
@@ -147,21 +188,38 @@ router.post('/', async (req, res) => {
     const authorId = req.userId;
     const authorUsername = (await User.findById(authorId)).populate('author');
     const authorData = [{ username: authorUsername.username, id: authorId }];
-    const { title, content, comments } = req.body;
+    const { title, content } = req.body;
     sentiment.registerLanguage('pt-br', ptBrLanguage);
 
+    //análsie do conteudo do post
     const postContentLowerCase = req.body.content.toLowerCase();
     const postContentWithoutAccentuation = retira_acentos(postContentLowerCase)
-    const lowerCaseAndWithoutSpecialChar = postContentWithoutAccentuation.replace(/[^a-zA-Z\s]+/g, '');
+    const simplifiedPostContent = postContentWithoutAccentuation.replace(/[^a-zA-Z\s]+/g, '');
+    
+    const contentTokenizer = new natural.AggressiveTokenizerPt();
+    const tokenizedPostContent = contentTokenizer.tokenize(simplifiedPostContent);
+    const filteredPostContent = SW.removeStopwords(tokenizedPostContent, SW.ptbr);
+    const filteredPostContentString = filteredPostContent.toString();
 
-    const tokenizer = new natural.AggressiveTokenizerPt();
-    const tokenizedReview = tokenizer.tokenize(lowerCaseAndWithoutSpecialChar);
-    const filteredReview = SW.removeStopwords(tokenizedReview, SW.ptbr);
-    const filteredReviewString = filteredReview.toString();
+    var postContentAnalysis = sentiment.analyze(filteredPostContentString, { language: 'pt-br' });
 
-    var postContentAnalysis = sentiment.analyze(filteredReviewString, { language: 'pt-br' });
+    //análise do titulo do post 
+    const postTitleLowerCase = req.body.title.toLowerCase();
+    const postTitleWithoutAccentuation = retira_acentos(postTitleLowerCase)
+    const simplifiedPostTitle = postTitleWithoutAccentuation.replace(/[^a-zA-Z\s]+/g, '');
+    
+    const titleTokenizer = new natural.AggressiveTokenizerPt();
+    const tokenizedPostTitle = titleTokenizer.tokenize(simplifiedPostTitle);
+    const filteredPostTitle= SW.removeStopwords(tokenizedPostTitle, SW.ptbr);
+    const filteredPostTitleString = filteredPostTitle.toString();
 
-    if (postContentAnalysis.score < 0) {
+    var postTitleAnalysis = sentiment.analyze(filteredPostTitleString, { language: 'pt-br' });
+
+
+    console.log ('Analise de sentimento do titlo --> ', postTitleAnalysis.score < 0)
+    console.log ('Analise de sentimento do conteudo --> ', postContentAnalysis.score < 0)
+
+    if ((postContentAnalysis.score < 0) || (postTitleAnalysis.score < 0)) {
       console.log("This post was reject due it's inapropriate content and was not added to posts Schema.");
       sendFlag = true;
     } else {
@@ -177,25 +235,6 @@ router.post('/', async (req, res) => {
       console.log('the post was created --> ', post);
       return res.status(200).send({ message: 'Post created successfully: ', post });
     }
-
-    // var commentAnalysis = sentiment.analyze(req.body.content, { language: 'pt-br' });
-    // console.log(commentAnalysis)
-    // if (commentAnalysis.negative.length > 0 ) {
-    //   sendFlag = true;
-    // }
-    // const post = await Post.create({ title, content, author: authorData });
-
-
-    // await post.save();
-
-    // if (sendFlag) {
-    //   console.log(sendFlag)
-    //   res.status(400).send({ error: 'Comment content invalid or unapropriated.' });
-
-    // } else {
-    // return res.status(200).send({ message: 'Post created successfully: ', post });
-    // }
-
   } catch (error) {
     console.log('why did it went wrong --> ', error);
     res.status(400).send({ error: 'Could not create this post.' });

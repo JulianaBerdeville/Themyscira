@@ -7,6 +7,7 @@ function ForumPost() {
   const history = useHistory();
   const [visible, setVisible] = useState(true);
   const [formDisplayed, setFormDisplayed] = useState(true);
+  const [postErrorVisible, setPostErrorVisible] = useState(true);
   const [formData, setFormData] = useState({
     title: '',
     content: ''
@@ -28,24 +29,33 @@ function ForumPost() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await axios.post('http://localhost:5000/posts/', formData, requestHeader);
-    if (response) {
-      setVisible(false);
-      setFormDisplayed(false);
-      setPostId(response.data.post._id);
-      console.log('backend res --> ', response);
-      console.log('submitted data --> ', formData);
-    }
+    try {
+      let response = await axios.post('http://localhost:5000/posts/', formData, requestHeader);
+      if (response) {
+        setVisible(false);
+        setFormDisplayed(false);
+        setPostId(response.data.post._id);
+      }
+    } catch (e) {
+      console.log('entrou no catch')
+      setPostErrorVisible(false);
+    }  
   }
 
   const goToPostHighlight = () => {
     sessionStorage.setItem('postId', postId);
     history.push('/conversa');
   }
-
   if (visible) {
     return (
       <div className="forum-post__background">
+        <div
+        className={(postErrorVisible)
+          ? "forum-post__error-alert"
+          : "forum-post__error-alert-alt"
+        }>
+        Seu conversa foi rejeitada a devido conteúdo impróprio.
+      </div>
       <Navbar />
       <div className="forum-post__page-container">
         <h1 className="forum-post__page-container__page-header">Inicie uma conversa</h1>
@@ -84,10 +94,12 @@ function ForumPost() {
               className="forum-post__page-container__form-container__form__post-textarea"
             />
 
-            <input
+            <button
               type="submit"
               className="forum-post__page-container__form-container__form__send-button"
-            />
+            >
+            enviar
+            </button>
           </form>
         </div>
       </div>
@@ -99,20 +111,15 @@ function ForumPost() {
     <div className="forum-post__background">
       <Navbar />
       <div className="forum-post__page-container">
-        <h1 className="forum-post__page-container__page-header">Inicie uma conversa</h1>
-        <p className="forum-post__page-container__introduction-paragraph">
-          Aqui você esta livre para expressar suas opiniões ou experiências
-          sobre violência doméstica contra a mulher.
-        </p>
+      <h1 className="forum-post__page-container__page-header">Parabéns!</h1>
 
-        <p className="forum-post__page-container__introduction-paragraph">
-          A Themyscira é movida à debates de cunho ressignificativo.
-          Queremos mudar a realidade das mulheres que sofrem violência
-          doméstica através do diálogo.
+      <p className="forum-post__page-container__introduction-paragraph">
+          Ao iniciar um novo debate, você está contribuindo com a transformação consciente da sociedade. 
+          Agradecemos por sua interação e esperamos que seus debates sejam muito esclarecedores!
         </p>
 
         <p onClick={goToPostHighlight} className="forum-post__page-container__go-to-post-highlight">
-          Seu post foi publicado com sucesso! Clique aqui para vê-lo.
+          Clique aqui para ver seu debate.
         </p>
       </div>
     </div>

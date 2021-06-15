@@ -52,6 +52,7 @@ function PasswordRecovery() {
             <form onSubmit={submitHandler}
               className={(formDisplayed) ? "password-recovery__form"
                 : "password-recovery__form-alt"}>
+            <div className="password-recovery__input-wrapper">
               <label htmlFor="email-input">email:</label>
               <input
                 id="email"
@@ -61,12 +62,16 @@ function PasswordRecovery() {
                 placeholder="seu email aqui"
                 className="password-recovery__form__email-input"
                 onChange={handleEmailInput} />
+            </div>
 
-              <input
+            <div className="password-recovery__input-wrapper">
+              <button
                 type="submit"
                 className="password-recovery__form__submit-input"
-              />
-
+              >
+              enviar
+              </button>
+              </div>
               <p
                 onClick={goToLoginPage}
                 className="password-recovery__form__back-to-login">

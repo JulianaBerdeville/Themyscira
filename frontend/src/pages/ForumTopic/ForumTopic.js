@@ -150,7 +150,11 @@ function ForumTopic() {
                             : "forum-topic__comments-container__right-container__content-alt"
                         }>
                             {(!postData.comments.length)
-                                ? <span> Este post ainda não tem comentários </span>
+                                ? <span
+                                className="forum-topic__comments-container__no-comments-span"
+                                > 
+                                Este post ainda não tem comentários 
+                                </span>
                                 :
                                 <>
                                     <span className="forum-topic__comments-wrapper">
@@ -234,9 +238,11 @@ function ForumTopic() {
                         placeholder="Tem algo a comentar?">
                     </textarea>
 
-                    <input
+                    <button
                         type="submit"
-                        className="forum-topic__response-container__send-button" />
+                        className="forum-topic__response-container__send-button">
+                        enviar
+                    </button>
                 </form>
             </div>
         </div>

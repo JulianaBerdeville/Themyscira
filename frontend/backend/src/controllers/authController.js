@@ -78,7 +78,8 @@ router.post('/forgot_password', async (req, res) => {
     });
 
     const mailOptions = {
-      from: 'no-reply@themyscirra.com',
+      subject: 'Themyscira / Recuperação de senha',
+      from: 'no-reply@themyscira.com',
       to: email,
       template: 'forgot_password',
       context: { token }

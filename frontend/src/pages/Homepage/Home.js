@@ -54,8 +54,9 @@ function Home() {
             </p>
 
                 <p className="homepage__second-description">
-                    Aqui você não é obrigade a compartilhar
-                    seu nome em nenhuma roda de conversa
+                    Aqui você não é obrigada a compartilhar
+                    suas informações pessoais, principalmente 
+                    dados que podem a identificar.
             </p>
                 {(buttonDisplayed === true)
                     ? <div className="homepage__buttons-container"><button type="button" onClick={() => {

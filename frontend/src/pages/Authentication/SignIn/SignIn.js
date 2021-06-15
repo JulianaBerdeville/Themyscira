@@ -113,8 +113,8 @@ function SignIn() {
 
         <h1 className="signin-page__title">THEMYSCIRA</h1>
         <p className="signin-page__welcome">
-          Bem-vinde à comunidade! Esperamos que você se sinta
-          acolhide e bastante à vontade!
+          Bem-vinda à comunidade! Esperamos que você se sinta
+          acolhida e bastante à vontade!
           </p>
         <p className="signin-page__back-to-login" onClick={goToLoginPage}>voltar ao Login</p>
       </div>

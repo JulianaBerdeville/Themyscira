@@ -6,6 +6,21 @@
     @include avoid-border-and-align-columns; 
   }
 
+  &__error-alert {
+    display: none;
+  }
+
+  &__error-alert-alt {
+    -moz-animation: showNotification 0s ease-in 5s forwards;
+    -webkit-animation: showNotification 0s ease-in 5s forwards;
+    -o-animation: showNotification 0s ease-in 5s forwards;
+    animation: showNotification 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    background-color: #941f1f;
+    color: #e5e5e5;
+  }
+
   &__page-container {
     height: inherit;
     display: flex;
@@ -83,6 +98,21 @@
         }
       }
     }
+  }
+}
+
+@keyframes showNotification {
+  to {
+      width:0;
+      height:0;
+      overflow:hidden;
+  }
+}
+@-webkit-keyframes showNotification {
+  to {
+      width:0;
+      height:0;
+      display:none;
   }
 }
 

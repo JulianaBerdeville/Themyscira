@@ -83,10 +83,12 @@ function PasswordReset() {
             className="password-recovery__form__email-input"
             onChange={handleTextInputs}
           />
-          <input
+          <button
             type="submit"
             className="password-recovery__form__submit-input"
-          />
+          >
+          enviar
+          </button>
         </form>
 
         <div className="password-recovery__footer">
