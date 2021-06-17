@@ -1,6 +1,4 @@
-<p align="center"> <img src="imgs/themyscira-logo.png"/> </p>
-
-# THEMYSCIRA 
+<p align="center"> <img src="themyscira-logo.png" alt="themyscira logo" width="300"/> </p>
 
 
 ## OBJETIVO
