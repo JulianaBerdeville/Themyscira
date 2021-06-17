@@ -4,14 +4,11 @@
 ## OBJETIVO
 
 <p>
-    A CADA MINUTO, 25 BRASILEIRAS SOFREM VIOLÊNCIA DOMÉSTICA
-</p>
-<p>
-    Segundo pesquisa realizada por IPEC (Inteligência em Pesquisa e Consultoria), 15% das brasileiras com 16 anos ou mais relataram ter experimentado algum tipo de     violência psicológica, física ou sexual perpetrada por parentes ou companheiro/ex-companheiro íntimo durante a pandemia, o equivalente a 13,4 milhões de          brasileiras.
+  Segundo estudo divulgado por WHO (World Health Organization), mais de um quarto das mulheres com idades entre 15 e 49 anos de idade que tenham estado em um relacionamento foram sujeitas a violência física e/ou sexual pelo seu parceiro íntimo pelo menos uma vez em sua vida (desde os 15 anos de idade). As estimativas de prevalência da violência por parte do parceiro íntimo ao longo da vida variam entre 20% no Pacífico Ocidental, 22% nos países de elevado rendimento e na Europa e 25% nas regiões das Américas da OMS até 33% na região africana da OMS, 31% na região do Mediterrâneo Oriental da OMS, e 33% na região do Sudeste Asiático da OMS.
 </p>
 
 <p>
-  Segundo estudo divulgado por WHO (World Health Organization), mais de um quarto das mulheres com idades entre 15 e 49 anos de idade que tenham estado em um relacionamento foram sujeitas a violência física e/ou sexual pelo seu parceiro íntimo pelo menos uma vez em sua vida (desde os 15 anos de idade). As estimativas de prevalência da violência por parte do parceiro íntimo ao longo da vida variam entre 20% no Pacífico Ocidental, 22% nos países de elevado rendimento e na Europa e 25% nas regiões das Américas da OMS até 33% na região africana da OMS, 31% na região do Mediterrâneo Oriental da OMS, e 33% na região do Sudeste Asiático da OMS.
+    Segundo pesquisa realizada por IPEC (Inteligência em Pesquisa e Consultoria), 15% das brasileiras com 16 anos ou mais relataram ter experimentado algum tipo de     violência psicológica, física ou sexual perpetrada por parentes ou companheiro/ex-companheiro íntimo durante a pandemia, o equivalente a 13,4 milhões de          brasileiras.
 </p>
 
 <p> 
